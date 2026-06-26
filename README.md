@@ -5,21 +5,31 @@ An educational project explores two different implementations of private on-chai
 
 ```mermaid
 flowchart TB
+
     A["Private Voting"]
 
-    A --> B["Approach 1<br/>Private bool state"]
-    A --> C["Approach 2<br/>One-time UintNote"]
+    A --> L
+    A --> R
 
-    %% Left
-    B --> B1["State is stored in a private<br/>bool variable tied to the voter"]
-    B --> B2["One vote per address<br/>is enforced by assert checks"]
-    B --> B3["Minimal implementation"]
-    B --> B4["Best for simple voting"]
+    subgraph L["APPROACH 1: PRIVATE BOOL STATE"]
+        direction TB
+        L1["Private bool variable"]
+        L2["State tied to voter address"]
+        L3["One vote enforced by assert checks"]
+        L4["Minimal implementation"]
+        L5["Best for simple voting"]
 
-    %% Right
-    C --> C1["Vote is represented by<br/>a spendable UintNote"]
-    C --> C2["The note can be spent<br/>only once"]
-    C --> C3["Works independently<br/>of the voter address"]
-    C --> C4["Much easier to compose<br/>into larger protocols"]
-    C --> C5["Fits the ZK note/nullifier model"]
+        L1 --> L2 --> L3 --> L4 --> L5
+    end
+
+    subgraph R["APPROACH 2: UINTNOTE"]
+        direction TB
+        R1["Spendable UintNote"]
+        R2["Can be spent only once"]
+        R3["Independent of voter address"]
+        R4["Composable with larger protocols"]
+        R5["Aligned with the ZK note/nullifier model"]
+
+        R1 --> R2 --> R3 --> R4 --> R5
+    end
 ```
